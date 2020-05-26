@@ -1,0 +1,27 @@
+<div class="container">
+    <h2 class="title" style="color: white; background-color: black; text-align: center; font-size: 50px; margin-top: 50px;">
+        Modifica attore
+    </h2>
+    <div *ngIf="actorService.selectedActor">
+        <table style="background-color: black; color: white;">
+            <tr>
+                <td>Nome:</td>
+                <input [(ngModel)]='actorService.selectedActor.firstname' type="text" name="firstname" placeholder="Nome">
+            </tr>
+            <tr>
+                <td>Cognome:</td>
+                <input [(ngModel)]='actorService.selectedActor.lastname' type="text" name="lastname" placeholder="Cognome">
+            </tr>
+            <tr>
+                <button style="font-weight: bold; border-radius: 5px; background-color: white; color: red; border-radius: 25px;" (click)="actorService.editActor()" routerLink="/actors">Salva attore</button>
+            </tr>
+        </table>
+
+        <td class="elenco">
+            <div *ngFor="let a of actors">{{a.firstname}} {{a.lastname}}</div>
+        </td>
+    </div>
+</div>
+<div>
+    <a style="margin-right: 15px; color: white; font-size: 20px" routerLink="/actors">Torna ad attori</a>
+</div>

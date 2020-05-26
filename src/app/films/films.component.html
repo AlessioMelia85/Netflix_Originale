@@ -1,0 +1,71 @@
+<table style="background-color: black; text-align: center; margin-right: 15px; color: white;">
+    <tr>
+        <td>Cerca film per titolo:</td>
+        <td> <input style="border-radius: 25px;" type="text" placeholder="Search film" (input)="search($event)"></td>
+    </tr>
+    <tr>
+        <td>Cerca film Descrizione:</td>
+        <td> <input style="border-radius: 25px;" type="text" placeholder="Search description" (input)="search2($event)"></td>
+    </tr>
+    <tr>
+        <td>Cerca film Regista: </td>
+        <td><input style="border-radius: 25px;" type="text" placeholder="Search director" (input)="search3($event)"></td>
+    </tr>
+</table>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-lg-3 py-2" *ngFor="let film of films">
+            <div class="card h-100 text-center" style="border: 0px;">
+                <img class="card-img-top" src="{{film.coverUrl}}" style="height: 350px;">
+                <div class="card-body" style="background-color: black; color: blanchedalmond;">
+
+                    <h3 class="card-title">{{film.title}} </h3>
+                    <h5> Durata: </h5> {{film.duration.hours}}h : {{film.duration.minutes}}min
+
+                    <!-- AGGIUNTA CUORE -->
+
+                    <div *ngIf="!userService.loggedUser">
+                        <h5> Stelle: {{film.stars}}
+                        </h5>
+                    </div>
+
+                    <div *ngIf="userService.loggedUser">
+                        <button [ngClass]="{'btn btn-danger':film.active, 'btn btn-light':!film.active}" (click)="favourite(film)"> &#9829;
+                        </button>
+                        <div>
+                            <app-stars (voteChange)="setVote(film, $event)" [vote]="film.stars"></app-stars>
+                        </div>
+                    </div>
+
+                    <div style="background-color: black; color: blanchedalmond;" class="card" (click)="film.showMore=! film.showMore">
+                        <h5 class="card-title">Dettagli</h5>
+                        <div *ngIf="film.showMore">
+                            <h5>Attori:</h5>
+                            {{getCastList(film.cast)}}
+
+                            <h5>Genere:</h5>
+                            {{getGenreList(film.genres)}}
+
+                            <p class="card-text">{{film.description}}</p>
+                            <!-- <h5> Regista: </h5>{{film.director}} -->
+
+                            <h5> Anno:</h5> {{film.releaseYear}}
+                            <div style="color: blanchedalmond;" class="card-text">{{film.tags}}</div>
+                        </div>
+                    </div>
+
+                    <ul class="list-group list-group-flush" style="text-align: center;">
+                        <li style="background-color: black;" class="list-group-item">
+                            <button style="font-weight: bold; border-radius: 5px; background-color: white; color: red; border-radius: 25px;" (click)="selectThisFilm(film)" routerLink='/films/edit'>Modifica</button>
+                        </li>
+                        <!-- <li style="background-color: black;" class="list-group-item">
+                            <button class="delete" title="delete hero" (click)="delete(hero)">Elimina</button>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

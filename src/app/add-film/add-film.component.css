@@ -1,0 +1,11 @@
+input {
+    width: 145px;
+}
+
+textarea {
+    width: 145px;
+}
+
+td {
+    font-weight: bold;
+}

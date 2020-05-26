@@ -1,0 +1,24 @@
+<div class="container">
+    <h2 class="title" style="color: white; background-color: black; text-align: center; font-size: 50px; margin-top: 50px;">
+        Aggiungi genere
+    </h2>
+
+    <table style="background-color: black; color: white;">
+        <tr>
+            <td>Nome:</td>
+            <input [(ngModel)]='genreService.newGenre.name' type="text" name="name" placeholder="Genere">
+        </tr>
+        <td></td>
+        <select>
+        <option id="option" *ngFor="let a of genres">{{a.name}}</option>
+    </select>
+        <tr>
+            <button style="font-weight: bold; border-radius: 5px; background-color: white; color: red; border-radius: 25px;" (click)="genreService.addGenre()">Aggiungi genere</button>
+        </tr>
+    </table>
+
+</div>
+
+<div>
+    <a style="margin-right: 15px; color: white; font-size: 20px" routerLink="/genres">Torna a generi</a>
+</div>

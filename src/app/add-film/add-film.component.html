@@ -1,0 +1,69 @@
+<h2 class="title" style="color: white; background-color: black; text-align: center; font-size: 50px; margin-top: 50px;">
+    Aggiungi film
+</h2>
+
+<br>
+<div class="container">
+
+    <table style="background-color: black; color: white;">
+        <br>
+
+        <tr>
+            <td>TITOLO</td>
+            <input [(ngModel)]='filmService.newFilm.title' type="text" name="title" placeholder="Titolo">
+        </tr>
+        <tr>
+            <td>DESCRIZIONE</td>
+            <textarea [(ngModel)]='filmService.newFilm.description' name="description" placeholder="Descrizione"></textarea>
+        </tr>
+        <tr>
+            <td>REGISTA</td>
+            <input [(ngModel)]='filmService.newFilm.director' type="text" name="regista" placeholder="Regista">
+        </tr>
+        <tr>
+            <td>DURATA</td>
+            <input [(ngModel)]='filmService.newFilm.duration.hours' type="number" name="duration.hours" style="width:72.5px">
+            <input [(ngModel)]='filmService.newFilm.duration.minutes' type="number" name="duration.minutes" style="width:72.5px">
+        </tr>
+        <tr>
+            <td>ANNO USCITA</td>
+            <input [(ngModel)]='filmService.newFilm.releaseYear' type="number" name="releaseYear">
+        </tr>
+        <tr>
+            <td>STELLE</td>
+            <input [(ngModel)]='filmService.newFilm.stars' type="number" name="stars" max="5" step="0.5">
+        </tr>
+
+        <tr>
+            <td>ATTORI</td>
+            <select style="width:142px" [(ngModel)]="filmService.newFilm.cast" multiple>
+            <option [value]="a" *ngFor="let a of actors">
+                {{a.firstname}} {{a.lastname}}
+            </option>
+        </select>
+        </tr>
+        <tr>
+            <td>GENERI</td>
+            <select style="width:142px" [(ngModel)]="filmService.newFilm.genres" multiple>
+            <option [value]="g" *ngFor="let g of genres">
+                {{g.name}}
+            </option>
+        </select>
+        </tr>
+        <tr>
+            <td>TAGS</td>
+            <textarea [(ngModel)]='filmService.newFilm.tags' type="text" name="tags" placeholder="Tags"></textarea>
+        </tr>
+        <tr>
+
+
+            <tr>
+                <button style="font-weight: bold; background-color: white; color: red; border-radius: 25px;" (click)='filmService.addFilm()'>Aggiungi film</button>
+            </tr>
+    </table>
+
+</div>
+
+<div>
+    <a style="background: black; color: white; font-size: 20px" routerLink="/films">Torna a film</a>
+</div>

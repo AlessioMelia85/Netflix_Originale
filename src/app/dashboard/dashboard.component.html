@@ -1,0 +1,70 @@
+<div *ngIf="!userService.loggedUser">
+    <input type="text" [(ngModel)]="username" placeholder="Username">
+    <input type="password" [(ngModel)]="password" placeholder="Password">
+
+    <div style="background-color: black; color: antiquewhite;" *ngIf="successLogin === false">Username o password errati</div>
+
+    <button style="font-weight: bold; background-color: white; color: red; border-radius: 25px;" (click)="login()">Login</button>
+</div>
+<div style="background: black; color: white; font-size: 20px" *ngIf="userService.loggedUser">
+    BENTORNATO {{ userService.loggedUser.firstname }}
+    <button style="font-weight: bold; background-color: white; color: red; border-radius: 25px;" (click)="userService.logout()">Logout</button>
+</div>
+
+<div class="container">
+    <div style="color: white; font-size: 20px">
+        <h1>Ultimi 4 film inseriti</h1>
+
+        <div class="row">
+            <div class="col-sm-6 col-lg-3 py-2" *ngFor="let film of lastFilms">
+                <div class="card h-100 text-center" style="border: 0px;">
+                    <img class="card-img-top" src="{{film.coverUrl}}" style="height: 350px;">
+                    <div class="card-body" style="background-color: black;">
+                        <div style="background-color: black; color: blanchedalmond;" class="card" (click)="film.showMore=! film.showMore">
+                            <h5 class="card-title">
+                                {{film.title}}</h5>
+
+                            <!-- AGGIUNTA CUORE -->
+
+                            <div *ngIf="userService.loggedUser">
+                                <button [ngClass]="{'btn btn-danger':film.active, 'btn btn-light':!film.active}" (click)="favourite(film)"> &#9829;
+                            </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h1>Top 3 film</h1>
+        <div class="row">
+            <div class="col-sm-6 col-lg-3 py-2" *ngFor="let film of topFilms">
+                <div class="card h-100 text-center" style="border: 0px;">
+                    <img class="card-img-top" src="{{film.coverUrl}}" style="height: 350px;">
+                    <div class="card-body" style="background-color: black;">
+
+                        <h5 class="card-title">
+                            {{film.title}}</h5>
+
+                        <!-- AGGIUNTA CUORE e STELLE-->
+
+                        <div *ngIf="!userService.loggedUser">
+                            <h5> Stelle: {{film.stars}}
+                            </h5>
+                        </div>
+
+                        <div *ngIf="userService.loggedUser">
+                            <button [ngClass]="{'btn btn-danger':film.active, 'btn btn-light':!film.active}" (click)="favourite(film)"> &#9829;
+                            </button>
+                            <div>
+                                <app-stars (voteChange)="setVote(film, $event)" [vote]="film.stars"></app-stars>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<h2 class="title" style="color: white; background-color: black; text-align: center; font-size: 50px; margin-top: 50px;">
+    Modifica film
+</h2>
+
+<div class="container">
+
+    <table *ngIf="filmService.selectedFilm" style="background-color: black; color: white;">
+        <br>
+
+        <tr>
+            <td>TITOLO</td>
+            <input [(ngModel)]='filmService.selectedFilm.title' type="text" name="title" placeholder="Titolo">
+        </tr>
+        <tr>
+            <td>DESCRIZIONE</td>
+            <textarea [(ngModel)]='filmService.selectedFilm.description' name="description" placeholder="Descrizione"></textarea>
+        </tr>
+        <tr>
+            <td>REGISTA</td>
+            <input [(ngModel)]='filmService.selectedFilm.director' type="text" name="regista" placeholder="Regista">
+        </tr>
+        <tr>
+            <td>DURATA</td>
+            <input [(ngModel)]='filmService.selectedFilm.duration.hours' type="number" name="duration.hours" style="width:72.5px">
+            <input [(ngModel)]='filmService.selectedFilm.duration.minutes' type="number" name="duration.minutes" style="width:72.5px">
+        </tr>
+        <tr>
+            <td>ANNO USCITA</td>
+            <input [(ngModel)]='filmService.selectedFilm.releaseYear' type="number" name="releaseYear">
+        </tr>
+
+        <tr>
+            <td>ATTORI</td>
+            <select style="width:142px" [(ngModel)]="filmService.selectedFilm.cast" multiple>
+            <option [value]="a" *ngFor="let a of actors">
+                {{a.firstname}} {{a.lastname}}
+            </option>
+        </select>
+        </tr>
+        <tr>
+            <td>GENERI</td>
+            <select style="width:142px" [(ngModel)]="filmService.selectedFilm.genres" multiple>
+            <option [value]="g" *ngFor="let g of genres">
+                {{g.name}}
+            </option>
+        </select>
+        </tr>
+        <tr>
+            <td>TAGS</td>
+            <textarea [(ngModel)]='filmService.selectedFilm.tags' type="text" name="tags" placeholder="Tags"></textarea>
+        </tr>
+        <tr>
+
+
+            <tr>
+                <button style="font-weight: bold; border-radius: 5px; background-color: white; color: red; border-radius: 25px;" routerLink='/films' (click)='filmService.editFilm()'>Salva film</button>
+            </tr>
+    </table>
+
+</div>
+
+<div>
+    <a style="background: black; color: white; font-size: 20px" routerLink="/films">Torna a film</a>
+</div>

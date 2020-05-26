@@ -1,0 +1,49 @@
+<div id="body">
+    <h2 class="title" style="font-weight: bold; font-size: 50px; padding: 25px; color: red; text-align: center; background-color: black;">
+        {{ title }}</h2>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="color: white; margin-top: 10px; margin-bottom: 10px;">
+
+        <a style="color: white;" class="nav-link" routerLink="/dashboard">Torna alla Home</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarText">
+            <div class="dropdown">
+                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left: 25px;">
+                Film
+              </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" routerLink="/films">Vai ai films</a>
+                    <a class="dropdown-item" routerLink="/films/add">Aggiungi un film</a>
+                    <a class="dropdown-item" routerLink="/films/edit">Modifica il film</a>
+
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left: 25px;">
+                Attori
+              </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" routerLink="/actors">Vai ad attori</a>
+                    <a class="dropdown-item" routerLink="/actors/add">Aggiungi un attore</a>
+                    <a class="dropdown-item" routerLink="/actors/edit">Modifica attore</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left: 25px;">
+                Generi
+              </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" routerLink="/genres">Vai ai generi</a>
+                    <a class="dropdown-item" routerLink="/genres/add">Aggiungi un genere</a>
+                    <a class="dropdown-item" routerLink="/genres/edit">Edita genere</a>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <router-outlet></router-outlet>
+</div>

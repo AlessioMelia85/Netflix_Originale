@@ -1,0 +1,11 @@
+<div>
+    <div *ngFor="let genre of genres" (click)="genre.showMore = !genre.showMore" style="margin-bottom: 30px;">
+        <div>
+            <div style="color: antiquewhite;">Genere: {{ genre.name }}</div>
+
+        </div>
+        <div>
+            <button (click)="selectThisGenre(genre)" routerLink="/genres/edit">Modifica</button>
+        </div>
+    </div>
+</div>

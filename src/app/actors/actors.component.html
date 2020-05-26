@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-lg-3 py-2" *ngFor="let actor of actors">
+            <div class="card h-100 text-center" style="border: 0px;">
+                <img class="card-img-top" src="{{actor.photo}}" style="height: 300px;">
+                <div class="card-body" style="background-color: black;">
+                    <div style="background-color: black; color: blanchedalmond;" class="card" (click)="actor.showMore = !actor.showMore">
+                        <h6 class="card-title">Nome: {{ actor.firstname }} </h6>
+                        <h6 class="card-title">Cognome: {{ actor.lastname }} </h6>
+                    </div>
+
+                    <ul class="list-group list-group-flush" style="text-align: center;">
+                        <li style="background-color: black;" class="list-group-item">
+                            <button style="text-align: center;font-weight: bold; border-radius: 5px; background-color: white; color: red; border-radius: 25px;" (click)="selectThisActor(actor)" routerLink="/actors/edit">Modifica</button>
+                        </li>
+                    </ul>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
